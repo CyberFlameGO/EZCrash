@@ -7,8 +7,8 @@ group = "me.notom3ga"
 version = "1.0"
 
 java {
-    targetCompatibility = JavaVersion.toVersion(16)
-    sourceCompatibility = JavaVersion.toVersion(16)
+    targetCompatibility = JavaVersion.toVersion(8)
+    sourceCompatibility = JavaVersion.toVersion(8)
 }
 
 repositories {
