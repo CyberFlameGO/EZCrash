@@ -1,0 +1,17 @@
+main: me.notom3ga.ezcrash.EZCrash
+name: EZCrash
+version: 1.0
+author: notOM3GA
+api-version: 1.13
+depend:
+  - ProtocolLib
+
+permissions:
+  ezcrash.command:
+    default: op
+    description: Allows you to use the /crash command
+commands:
+  crash:
+    permission: ezcrash.command
+    description: Allows you to crash a client
+    usage: /crash <player>
