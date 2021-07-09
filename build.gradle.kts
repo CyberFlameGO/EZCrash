@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "me.notom3ga"
-version = "1.0"
+version = "1.1"
 
 java {
     targetCompatibility = JavaVersion.toVersion(8)
@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
+    compileOnly("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
     compileOnly("com.comphenix.protocol:ProtocolLib:4.6.0")
 }
 
