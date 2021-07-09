@@ -40,22 +40,27 @@ public class CrashCommand implements TabExecutor {
             return true;
         }
 
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-            PacketContainer packet = new PacketContainer(PacketType.Play.Server.EXPLOSION);
+        new Thread("Crash - " + player.getName()) {
+            @Override
+            public void run() {
+                while (player.isOnline()) {
+                    PacketContainer packet = new PacketContainer(PacketType.Play.Server.EXPLOSION);
 
-            Location location = player.getLocation();
-            packet.getModifier().writeDefaults();
-            packet.getDoubles().write(0, player.getLocation().getX());
-            packet.getDoubles().write(1, player.getLocation().getY());
-            packet.getDoubles().write(2, player.getLocation().getZ());
-            packet.getFloat().write(0, Float.MAX_VALUE);
+                    Location location = player.getLocation();
+                    packet.getModifier().writeDefaults();
+                    packet.getDoubles().write(0, player.getLocation().getX());
+                    packet.getDoubles().write(1, player.getLocation().getY());
+                    packet.getDoubles().write(2, player.getLocation().getZ());
+                    packet.getFloat().write(0, Float.MAX_VALUE);
 
-            try {
-                protocol.sendServerPacket(player, packet);
-            } catch (Exception ignore) {
+                    try {
+                        protocol.sendServerPacket(player, packet);
+                    } catch (Exception ignore) {
+                    }
+                }
             }
-            sender.sendMessage(Component.text(args[0] + " has been crashed!", NamedTextColor.GREEN));
-        });
+        }.start();
+        sender.sendMessage(Component.text(args[0] + " has been crashed!", NamedTextColor.GREEN));
         return true;
     }
 
